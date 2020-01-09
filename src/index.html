@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Iron Fangs Dashboard</title>
+    <link href="css/style.css" rel="stylesheet">
+    <!--<script src="../node_modules/webmidi/webmidi.min.js"></script>-->
+</head>
+
+<body>
+    <div id="timer">2:15</div>
+    <div id="camera"></div>
+    <article>
+        <div class="select-container">
+            <div class='sectitle'>Automous</div>
+            <select id="auto-select">
+                <option>No automous found</option>
+            </select>
+        </div>
+        <!--<div class="motors">
+            <div class='sectitle'>Motor Power</div>
+            <div class="motor" id="elevatorMotor"><a>Elevator</a>
+                <div class="progress"><a class="showVal" id="elevatorVal">50%</a><input type="range" min="0" max="100"
+                        value="50" id="elevatorSlider" class="slider" oninput="document.getElementById('elevatorVal').innerHTML = this.value+'%';">
+                    <div class="progress-bar-cover" style="width: 99%;" id="elevatorSpeed"></div>
+                </div>
+            </div>
+            <div class="motor" id="intakeMotor"><a>Intake</a>
+                <div class="progress"><a class="showVal" id="intakeVal">50%</a><input type="range" min="0" max="100"
+                        value="50" id="intakeSlider" class="slider" oninput="document.getElementById('intakeVal').innerHTML = this.value+'%';">
+                    <div class="progress-bar-cover" style="width: 99%;" id="intakeSpeed"></div>
+                </div>
+            </div>
+        </div>-->
+        <div class="panels">
+            <div class="panel">
+                <div class="panelcont" id="battery">
+                    <div class='sectitle'>Battery</div>
+                    <center>
+                        <div class='paneltext red'>0 V</div>
+                    </center>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panelcont" id="intake">
+                    <div class='sectitle'>Intake</div>
+                    <center>
+                        <div class='paneltext'>UP</div>
+                    </center>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panelcont" id="elevatorHeight">
+                    <div class='sectitle'>Elevator</div>
+                    <center>
+                        <div class='paneltext'>BOTTOM</div>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="panels">
+            <div class="panel">
+                <div class="panelcont" id="vision">
+                    <div class='sectitle'>Vision</div>
+                    <center>
+                        <div class='paneltext'>N/A</div>
+                    </center>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panelcont" id="leftDist">
+                    <div class='sectitle'>Left</div>
+                    <center>
+                        <div class='paneltext'>0.00ft</div>
+                    </center>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panelcont" id="rightDist">
+                    <div class='sectitle'>Right</div>
+                    <center>
+                        <div class='paneltext'>0.00ft</div>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <!--<div class="panels">
+            <div class="panel" id="tank">
+                <div class="panelcont">
+                    <div class='sectitle'>Tank</div>
+                    <center>
+                        <div class='paneltext'>81 psi</div>
+                    </center>
+                </div>
+            </div>
+            <div class="panel" id="compressor">
+                <div class="panelcont">
+                    <div class='sectitle'>Comp</div>
+                    <center>
+                        <div class='paneltext green'>ON</div>
+                    </center>
+                </div>
+            </div>
+            <div class="panel" id="temp">
+                <div class="panelcont">
+                    <div class='sectitle'>Temp</div>
+                    <center>
+                        <div class='paneltext'>26 °C</div>
+                    </center>
+                </div>
+            </div>
+        </div>-->
+        <center><div id="camera2"></div></center>
+    </article>
+    <!-- The sidebar of the dashboard. Designed for smaller control elements like selection boxes and small buttons. -->
+    <aside>
+        <!-- Gyroscope -->
+        <center><svg id="gyro">
+                <filter id="dropshadow" height="130%">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="3" /> <!-- stdDeviation is how much to blur -->
+                    <feOffset dx="1" dy="1" result="offsetblur" /> <!-- how much to offset -->
+                    <feComponentTransfer>
+                        <feFuncA type="linear" slope="0.3" /> <!-- slope is the opacity of the shadow -->
+                    </feComponentTransfer>
+                    <feMerge>
+                        <feMergeNode /> <!-- this contains the offset blurred image -->
+                        <feMergeNode in="SourceGraphic" />
+                        <!-- this contains the element that the filter is applied to -->
+                    </feMerge>
+                </filter>
+                <circle cx="85" cy="85" r="83" fill="white" style="filter:url(#dropshadow)"></circle>
+                <circle cx="85" cy="85" r="10" fill="#2F5C95" style="filter:url(#dropshadow)"></circle>
+                <rect id="gyro-arm" rx="5" ry="5" x="80" y="5" width="10" height="80"></rect>
+                <text id="gyro-number" x="90" y="115">0º</text>
+            </svg>
+        </center>
+
+
+        <center>
+            <div class="switch">
+                <div class="switchTitle">Demo Mode</div>
+                <input type="checkbox" id="switchOne" onclick="ChangeSwitch(this, 'labelOne', 'switchOne')" />
+                <label for="switchOne" id="labelOne">OFF</label>
+            </div>
+        </center>
+
+        <center>
+            <div class="switch">
+                <div class="switchTitle">Switch 2</div>
+                <input type="checkbox" id="switchTwo" onclick="ChangeSwitch(this, 'labelTwo', 'switchTwo')" />
+                <label for="switchTwo" id="labelTwo">OFF</label>
+            </div>
+        </center>
+
+        <center>
+            <div class="switch">
+                <div class="switchTitle">Switch 3</div>
+                <input type="checkbox" id="switchThree" onclick="ChangeSwitch(this, 'labelThree', 'switchThree')" />
+                <label for="switchThree" id="labelThree">OFF</label>
+            </div>
+        </center>
+
+        <center>
+            <div class="switch">
+                <div class="switchTitle">Switch 4</div>
+                <input type="checkbox" id="switchFour" onclick="ChangeSwitch(this, 'labelFour', 'switchFour')" />
+                <label for="switchFour" id="labelFour">OFF</label>
+            </div>
+        </center>
+
+        <!--<center>
+            <div class="switch">
+                <div class="switchTitle">Switch 5</div>
+                <input type="checkbox" id="switchFive" onclick="ChangeSwitch(this, 'labelFive')" />
+                <label for="switchFive" id="labelFive">OFF</label>
+            </div>
+        </center>-->
+        <div class="vallor"></div>
+        <div id="color">asdf</div>
+    </aside>
+    <div id="login">
+        <input id="connect-address" type="text" value="localhost" disabled>
+        <button id="connect" disabled>Connecting</button>
+    </div>
+    <div class="iflogo"><img width="100px" height="100px" src="assets/logo.png"></div>
+    <!--<script src="networktables/networktables.js"></script>
+    <script src="connection.js"></script>
+    <script src="ui.js"></script>-->
+    <!--<script src="functions.js"></script>-->
+    <script>
+
+        const WebMidi = require('webmidi');
+            WebMidi.enable(function (err) {
+                if (err) console.log(err);
+
+console.log(WebMidi.inputs);
+        if (err) {
+          console.log("WebMidi could not be enabled.", err);
+        } else {
+          console.log("WebMidi enabled!");
+          setTimeout(function() {
+
+          console.log(WebMidi.inputs);
+           //var input = WebMidi.getInputByName("MIDIIN2 (LPMiniMK3 MIDI)");
+           var input = WebMidi.inputs[WebMidi.inputs.length-1];
+          input.addListener('noteon', 1,
+            function (e) {
+                if (e.note.name == "C") {
+                    if (e.note.octave == "2") {
+                        console.log("Red Pressed");
+                        document.getElementById("color").innerHTML = "Red" + e.note.name + e.note.octave;
+                    } else if (e.note.octave == "3") {
+                        console.log("Green Pressed");
+                        document.getElementById("color").innerHTML = "Green" + e.note.name + e.note.octave;
+                    } else if (e.note.octave == "4") {
+                        console.log("Blue Pressed");
+                        document.getElementById("color").innerHTML = "Blue" + e.note.name + e.note.octave;
+                    } else if (e.note.octave == "5") {
+                        console.log("Yellow Pressed");
+                        document.getElementById("color").innerHTML = "Yellow" + e.note.name + e.note.octave;
+                    } else if (e.note.octave == "6") {
+                        console.log("Spin Pressed");
+                        document.getElementById("color").innerHTML = "Spin" + e.note.name + e.note.octave;
+                    }
+                }
+            }
+          );
+        }, 2000);
+        console.log("asd");
+        }
+        
+        }, true);
+            </script>
+</body>
+
+</html>
