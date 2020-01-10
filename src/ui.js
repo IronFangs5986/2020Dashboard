@@ -134,8 +134,18 @@ ui.armPosition.oninput = function() {
     NetworkTables.putValue('/SmartDashboard/arm/encoder', parseInt(this.value));
 };
 
-function launchpadBtn(buttonId) {
-  
+function launchpadBtn(buttonId, value) {
+  if (buttonId == 1) {
+    NetworkTables.putValue('/FangsLaunchpad/redButton', value);
+  } else if (buttonId == 2) {
+    NetworkTables.putValue('/FangsLaunchpad/greenButton', value);
+  } else if (buttonId == 3) {
+    NetworkTables.putValue('/FangsLaunchpad/blueButton', value);
+  } else if (buttonId == 4) {
+    NetworkTables.putValue('/FangsLaunchpad/yellowButton', value);
+  } else if (buttonId == 5) {
+    NetworkTables.putValue('/FangsLaunchpad/spinButton', value);
+  }
 }
 
 function ChangeSwitch(ckbx, label, path)
