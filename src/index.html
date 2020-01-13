@@ -111,7 +111,9 @@
                 </div>
             </div>
         </div>-->
-        <center><div id="camera2"></div></center>
+        <center>
+            <div id="camera2"></div>
+        </center>
     </article>
     <!-- The sidebar of the dashboard. Designed for smaller control elements like selection boxes and small buttons. -->
     <aside>
@@ -189,76 +191,115 @@
     <script src="ui.js"></script>-->
     <!--<script src="functions.js"></script>-->
     <script>
-
         const WebMidi = require('webmidi');
-            WebMidi.enable(function (err) {
-                if (err) console.log(err);
+        WebMidi.enable(function (err) {
+            if (err) console.log(err);
 
-console.log(WebMidi.inputs);
-        if (err) {
-          console.log("WebMidi could not be enabled.", err);
-        } else {
-          console.log("WebMidi enabled!");
-          setTimeout(function() {
+            console.log(WebMidi.inputs);
+            if (err) {
+                console.log("WebMidi could not be enabled.", err);
+            } else {
+                console.log("WebMidi enabled!");
+                setTimeout(function () {
 
-          console.log(WebMidi.inputs);
-           //var input = WebMidi.getInputByName("MIDIIN2 (LPMiniMK3 MIDI)");
-           var input = WebMidi.inputs[WebMidi.inputs.length-1];
-          input.addListener('noteon', 1,
-            function (e) {
-                if (e.note.name == "C") {
-                    if (e.note.octave == "2") {
-                        console.log("Red Pressed");
-                        document.getElementById("color").innerHTML = "Red" + e.note.name + e.note.octave;
-                        launchpadBtn(1, 1);
-                    } else if (e.note.octave == "3") {
-                        console.log("Green Pressed");
-                        document.getElementById("color").innerHTML = "Green" + e.note.name + e.note.octave;
-                        launchpadBtn(2, 1);
-                    } else if (e.note.octave == "4") {
-                        console.log("Blue Pressed");
-                        document.getElementById("color").innerHTML = "Blue" + e.note.name + e.note.octave;
-                        launchpadBtn(3, 1);
-                    } else if (e.note.octave == "5") {
-                        console.log("Yellow Pressed");
-                        document.getElementById("color").innerHTML = "Yellow" + e.note.name + e.note.octave;
-                        launchpadBtn(4, 1);
-                    } else if (e.note.octave == "6") {
-                        console.log("Spin Pressed");
-                        document.getElementById("color").innerHTML = "Spin" + e.note.name + e.note.octave;
-                        launchpadBtn(5, 1);
+                    console.log(WebMidi.inputs);
+                    //var input = WebMidi.getInputByName("MIDIIN2 (LPMiniMK3 MIDI)");
+                    var input = WebMidi.inputs[WebMidi.inputs.length - 1];
+                    input.addListener('noteon', 1,
+                        function (e) {
+                            if (e.note.name == "C") {
+                                if (e.note.octave == "2") {
+                                    console.log("Red Pressed");
+                                    document.getElementById("color").innerHTML = "Red" + e.note
+                                        .name + e.note.octave;
+                                    launchpadBtn(1, 1);
+                                } else if (e.note.octave == "3") {
+                                    console.log("Green Pressed");
+                                    document.getElementById("color").innerHTML = "Green" + e.note
+                                        .name + e.note.octave;
+                                    launchpadBtn(2, 1);
+                                } else if (e.note.octave == "4") {
+                                    console.log("Blue Pressed");
+                                    document.getElementById("color").innerHTML = "Blue" + e.note
+                                        .name + e.note.octave;
+                                    launchpadBtn(3, 1);
+                                } else if (e.note.octave == "5") {
+                                    console.log("Yellow Pressed");
+                                    document.getElementById("color").innerHTML = "Yellow" + e.note
+                                        .name + e.note.octave;
+                                    launchpadBtn(4, 1);
+                                } else if (e.note.octave == "6") {
+                                    console.log("Spin Pressed");
+                                    document.getElementById("color").innerHTML = "Spin" + e.note
+                                        .name + e.note.octave;
+                                    launchpadBtn(5, 1);
+                                }
+                            }
+                        }
+                    );
+                    input.addListener('noteoff', 1,
+                        function (e) {
+                            if (e.note.name == "C") {
+                                if (e.note.octave == "2") {
+                                    console.log("Red Released");
+                                    launchpadBtn(1, 0);
+                                } else if (e.note.octave == "3") {
+                                    console.log("Green Released");
+                                    launchpadBtn(2, 0);
+                                } else if (e.note.octave == "4") {
+                                    console.log("Blue Released");
+                                    launchpadBtn(3, 0);
+                                } else if (e.note.octave == "5") {
+                                    console.log("Yellow Released");
+                                    launchpadBtn(4, 0);
+                                } else if (e.note.octave == "6") {
+                                    console.log("Spin Released");
+                                    launchpadBtn(5, 0);
+                                }
+                            }
+                        }
+                    );
+
+                    function setLaunchpad(one, two, three, four, five, six, seven, eight, row) {
+
                     }
-                }
-            }
-          );
-          input.addListener('noteoff', 1,
-            function (e) {
-                if (e.note.name == "C") {
-                    if (e.note.octave == "2") {
-                        console.log("Red Released");
-                        launchpadBtn(1, 0);
-                    } else if (e.note.octave == "3") {
-                        console.log("Green Released");
-                        launchpadBtn(2, 0);
-                    } else if (e.note.octave == "4") {
-                        console.log("Blue Released");
-                        launchpadBtn(3, 0);
-                    } else if (e.note.octave == "5") {
-                        console.log("Yellow Released");
-                        launchpadBtn(4, 0);
-                    } else if (e.note.octave == "6") {
-                        console.log("Spin Released");
-                        launchpadBtn(5, 0);
+                    var frames = 2;
+                    var currentFrame = 0;
+                    var secondInterval = 1;
+
+                    function displayAnimation() {
+                        if (currentFrame == 0) {
+                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "A");
+                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "B");
+                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "C");
+                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "D");
+                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "E");
+                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "F");
+                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "G");
+                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "A#");
+                            currentFrame = currentFrame + 1;
+                        }
+                        if (currentFrame == 1) {
+                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "A");
+                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "B");
+                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "C");
+                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "D");
+                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "E");
+                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "F");
+                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "G");
+                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "A#");
+                            currentFrame = 0;
+                        }
                     }
-                }
+                    window.setInterval(function () {
+                        displayAnimation();
+                    }, secondInterval * 1000);
+                }, 2000);
+                console.log("asd");
             }
-          );
-        }, 2000);
-        console.log("asd");
-        }
-        
+
         }, true);
-            </script>
+    </script>
 </body>
 
 </html>
