@@ -145,6 +145,10 @@ function launchpadBtn(buttonId, value) {
     NetworkTables.putValue('/FangsLaunchpad/yellowButton', value);
   } else if (buttonId == 5) {
     NetworkTables.putValue('/FangsLaunchpad/spinButton', value);
+  } else if (buttonId == 6) {
+    NetworkTables.putValue('/FangsLaunchpad/climbButton1', value);
+  } else if (buttonId == 7) {
+    NetworkTables.putValue('/FangsLaunchpad/climbButton2', value);
   }
 }
 

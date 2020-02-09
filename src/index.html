@@ -186,9 +186,9 @@
         <button id="connect" disabled>Connecting</button>
     </div>
     <div class="iflogo"><img width="100px" height="100px" src="assets/logo.png"></div>
-    <!--<script src="networktables/networktables.js"></script>
+    <script src="networktables/networktables.js"></script>
     <script src="connection.js"></script>
-    <script src="ui.js"></script>-->
+    <script src="ui.js"></script>
     <!--<script src="functions.js"></script>-->
     <script>
         const WebMidi = require('webmidi');
@@ -205,8 +205,11 @@
                     console.log(WebMidi.inputs);
                     //var input = WebMidi.getInputByName("MIDIIN2 (LPMiniMK3 MIDI)");
                     var input = WebMidi.inputs[WebMidi.inputs.length - 1];
+                    var output = WebMidi.outputs[WebMidi.outputs.length - 1];
                     input.addListener('noteon', 1,
                         function (e) {
+                            document.getElementById("color").innerHTML = "Red" + e.note
+                                        .name + e.note.octave;
                             if (e.note.name == "C") {
                                 if (e.note.octave == "2") {
                                     console.log("Red Pressed");
@@ -233,7 +236,15 @@
                                     document.getElementById("color").innerHTML = "Spin" + e.note
                                         .name + e.note.octave;
                                     launchpadBtn(5, 1);
+                                } else if (e.note.name == "D") {
+                                if (e.note.octave == "1") {
+                                    console.log("Climb 1 Pressed");
+                                    launchpadBtn(6, 1);
+                                } else if (e.note.octave == "2") {
+                                    console.log("Climb 1 Pressed");
+                                    launchpadBtn(7, 1);
                                 }
+                            }
                             }
                         }
                     );
@@ -256,50 +267,34 @@
                                     console.log("Spin Released");
                                     launchpadBtn(5, 0);
                                 }
+                            } else if (e.note.name == "D") {
+                                if (e.note.octave == "1") {
+                                    console.log("Climb 1 Released");
+                                    launchpadBtn(6, 0);
+                                } else if (e.note.octave == "2") {
+                                    console.log("Climb 1 Released");
+                                    launchpadBtn(7, 0);
+                                }
                             }
                         }
                     );
 
-                    function setLaunchpad(one, two, three, four, five, six, seven, eight, row) {
+                    //set launchpad
 
-                    }
-                    var frames = 2;
-                    var currentFrame = 0;
-                    var secondInterval = 1;
+                   //vars
 
-                    function displayAnimation() {
-                        if (currentFrame == 0) {
-                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "A");
-                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "B");
-                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "C");
-                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "D");
-                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "E");
-                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "F");
-                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "G");
-                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "A#");
-                            currentFrame = currentFrame + 1;
-                        }
-                        if (currentFrame == 1) {
-                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "A");
-                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "B");
-                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "C");
-                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "D");
-                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "E");
-                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "F");
-                            setLaunchpad("O", " ", "O", " ", "O", " ", "O", " ", "G");
-                            setLaunchpad(" ", "O", " ", "O", " ", "O", " ", "O", "A#");
-                            currentFrame = 0;
-                        }
-                    }
-                    window.setInterval(function () {
-                        displayAnimation();
-                    }, secondInterval * 1000);
+                   //displayAnimation
+                    
+                   //interval
+                   setupAnimations(WebMidi);
+
                 }, 2000);
                 console.log("asd");
             }
 
         }, true);
     </script>
+    <script src="animations.js"></script>
 </body>
 
 </html>
