@@ -206,6 +206,10 @@
                     //var input = WebMidi.getInputByName("MIDIIN2 (LPMiniMK3 MIDI)");
                     var input = WebMidi.inputs[WebMidi.inputs.length - 1];
                     var output = WebMidi.outputs[WebMidi.outputs.length - 1];
+                    window.setInterval(function () {
+                        output.playNote("A2", 1);
+                    }, secondInterval * 1000);
+
                     input.addListener('noteon', 1,
                         function (e) {
                             document.getElementById("color").innerHTML = "Red" + e.note
@@ -236,14 +240,14 @@
                                     document.getElementById("color").innerHTML = "Spin" + e.note
                                         .name + e.note.octave;
                                     launchpadBtn(5, 1);
-                                } else if (e.note.name == "D") {
-                                if (e.note.octave == "1") {
-                                    console.log("Climb 1 Pressed");
-                                    launchpadBtn(6, 1);
-                                } else if (e.note.octave == "2") {
-                                    console.log("Climb 1 Pressed");
-                                    launchpadBtn(7, 1);
                                 }
+                            } else if (e.note.name == "D") {
+                            if (e.note.octave == "2") {
+                                console.log("Climb 1 Pressed");
+                                launchpadBtn(6, 1);
+                            } else if (e.note.octave == "3") {
+                                console.log("Climb 2 Pressed");
+                                launchpadBtn(7, 1);
                             }
                             }
                         }
@@ -268,11 +272,11 @@
                                     launchpadBtn(5, 0);
                                 }
                             } else if (e.note.name == "D") {
-                                if (e.note.octave == "1") {
+                                if (e.note.octave == "2") {
                                     console.log("Climb 1 Released");
                                     launchpadBtn(6, 0);
-                                } else if (e.note.octave == "2") {
-                                    console.log("Climb 1 Released");
+                                } else if (e.note.octave == "3") {
+                                    console.log("Climb 2 Released");
                                     launchpadBtn(7, 0);
                                 }
                             }
@@ -284,7 +288,7 @@
                    //vars
 
                    //displayAnimation
-                    
+
                    //interval
                    setupAnimations(WebMidi);
 
