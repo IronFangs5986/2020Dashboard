@@ -13,7 +13,7 @@ let ui = {
         number: document.getElementById('gyro-number')
     },
     battery: document.getElementById('battery'),
-    intake: document.getElementById('intake'),
+    shooterrpm: document.getElementById('shooterrpm'),
     elevatorHeight: document.getElementById('elevatorHeight'),
     vision: document.getElementById('vision'),
     leftDist: document.getElementById('leftDist'),
@@ -58,15 +58,11 @@ NetworkTables.addKeyListener('/FangsDashboard/elevatorHeight', updateElevatorHei
       ui.timer.innerHTML = value;
   });
 
-// Intake
-let updateIntake = (key, value) => {
-    if (value == "up") {
-  ui.intake.innerHTML = "<div class='sectitle'>Intake</div><center><div class='paneltext'>UP</div></center></div>"
-  } else {
-      ui.intake.innerHTML = "<div class='sectitle'>Intake</div><center><div class='paneltext'>DOWN</div></center></div>"
-  }
+// shooterRPM
+let updateShooterRPM = (key, value) => {
+  ui.shooterrpm.innerHTML = "<div class='sectitle'>Shooter RPM</div><center><div class='paneltext'>"+value+" RPM</div></center></div>"
   };
-  NetworkTables.addKeyListener('/FangsDashboard/intake', updateIntake);
+  NetworkTables.addKeyListener('/FangsDashboard/shooterRPM', updateShooterRPM);
 
   // Vision
 let updateVision = (key, value) => {
