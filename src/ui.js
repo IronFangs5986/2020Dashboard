@@ -60,7 +60,7 @@ NetworkTables.addKeyListener('/FangsDashboard/elevatorHeight', updateElevatorHei
 
 // shooterRPM
 let updateShooterRPM = (key, value) => {
-  ui.shooterrpm.innerHTML = "<div class='sectitle'>Shooter RPM</div><center><div class='paneltext'>"+value+" RPM</div></center></div>"
+  ui.shooterrpm.innerHTML = "<div class='sectitle'>Shooter</div><center><div class='paneltext'>"+Math.trunc(value)+" rpm</div></center></div>"
   };
   NetworkTables.addKeyListener('/FangsDashboard/shooterRPM', updateShooterRPM);
 
@@ -145,6 +145,20 @@ function launchpadBtn(buttonId, value) {
     NetworkTables.putValue('/FangsLaunchpad/climbButton1', value);
   } else if (buttonId == 7) {
     NetworkTables.putValue('/FangsLaunchpad/climbButton2', value);
+  } else if (buttonId == 8) {
+    NetworkTables.putValue('/FangsLaunchpad/spinnerUpButton', value);
+  } else if (buttonId == 9) {
+    NetworkTables.putValue('/FangsLaunchpad/spinnerDownButton', value);
+  } else if (buttonId == 10) {
+    NetworkTables.putValue('/FangsLaunchpad/autoColorButton', value);
+  } else if (buttonId == 11) {
+    NetworkTables.putValue('/FangsLaunchpad/adjustCWButton', value);
+  } else if (buttonId == 12) {
+    NetworkTables.putValue('/FangsLaunchpad/adjustCCWButton', value);
+  } else if (buttonId == 14) {
+    NetworkTables.putValue('/FangsLaunchpad/climbAdjustLeftButton', value);
+  } else if (buttonId == 15) {
+    NetworkTables.putValue('/FangsLaunchpad/climbAdjustRightButton', value);
   }
 }
 

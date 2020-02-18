@@ -13,9 +13,9 @@
     <div id="camera"></div>
     <article>
         <div class="select-container">
-            <div class='sectitle'>Automous</div>
+            <div class='sectitle'>Autonomous</div>
             <select id="auto-select">
-                <option>No automous found</option>
+                <option>No autonomous found</option>
             </select>
         </div>
         <!--<div class="motors">
@@ -44,9 +44,9 @@
             </div>
             <div class="panel">
                 <div class="panelcont" id="shooterrpm">
-                    <div class='sectitle'>Shooter RPM</div>
+                    <div class='sectitle'>Shooter</div>
                     <center>
-                        <div class='paneltext'>0 RPM</div>
+                        <div class='paneltext'>0 rpm</div>
                     </center>
                 </div>
             </div>
@@ -120,15 +120,12 @@
         <!-- Gyroscope -->
         <center><svg id="gyro">
                 <filter id="dropshadow" height="130%">
-                    <feGaussianBlur in="SourceAlpha" stdDeviation="3" /> <!-- stdDeviation is how much to blur -->
-                    <feOffset dx="1" dy="1" result="offsetblur" /> <!-- how much to offset -->
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+                    <feOffset dx="1" dy="1" result="offsetblur" />
                     <feComponentTransfer>
-                        <feFuncA type="linear" slope="0.3" /> <!-- slope is the opacity of the shadow -->
                     </feComponentTransfer>
                     <feMerge>
-                        <feMergeNode /> <!-- this contains the offset blurred image -->
                         <feMergeNode in="SourceGraphic" />
-                        <!-- this contains the element that the filter is applied to -->
                     </feMerge>
                 </filter>
                 <circle cx="85" cy="85" r="83" fill="white" style="filter:url(#dropshadow)"></circle>
@@ -179,7 +176,7 @@
             </div>
         </center>-->
         <div class="vallor"></div>
-        <div id="color">asdf</div>
+        <div id="color"></div>
     </aside>
     <div id="login">
         <input id="connect-address" type="text" value="localhost" disabled>
@@ -217,29 +214,25 @@
                             if (e.note.name == "C") {
                                 if (e.note.octave == "2") {
                                     console.log("Red Pressed");
-                                    document.getElementById("color").innerHTML = "Red" + e.note
-                                        .name + e.note.octave;
                                     launchpadBtn(1, 1);
                                 } else if (e.note.octave == "3") {
                                     console.log("Green Pressed");
-                                    document.getElementById("color").innerHTML = "Green" + e.note
-                                        .name + e.note.octave;
                                     launchpadBtn(2, 1);
                                 } else if (e.note.octave == "4") {
                                     console.log("Blue Pressed");
-                                    document.getElementById("color").innerHTML = "Blue" + e.note
-                                        .name + e.note.octave;
                                     launchpadBtn(3, 1);
                                 } else if (e.note.octave == "5") {
                                     console.log("Yellow Pressed");
-                                    document.getElementById("color").innerHTML = "Yellow" + e.note
-                                        .name + e.note.octave;
                                     launchpadBtn(4, 1);
                                 } else if (e.note.octave == "6") {
                                     console.log("Spin Pressed");
-                                    document.getElementById("color").innerHTML = "Spin" + e.note
-                                        .name + e.note.octave;
                                     launchpadBtn(5, 1);
+                                } else if (e.note.octave == "7") {
+                                    console.log("Spin Adj CW Pressed");
+                                    launchpadBtn(11, 1);
+                                } else if (e.note.octave == "8") {
+                                    console.log("Spin Adj CCW Pressed");
+                                    launchpadBtn(12, 1);
                                 }
                             } else if (e.note.name == "D") {
                             if (e.note.octave == "2") {
@@ -248,6 +241,21 @@
                             } else if (e.note.octave == "3") {
                                 console.log("Climb 2 Pressed");
                                 launchpadBtn(7, 1);
+                            } else if (e.note.octave == "4") {
+                                console.log("Spinner Up Pressed");
+                                launchpadBtn(8, 1);
+                            } else if (e.note.octave == "5") {
+                                console.log("Spinner Down Pressed");
+                                launchpadBtn(9, 1);
+                            } else if (e.note.octave == "6") {
+                                console.log("Auto Color Pressed");
+                                launchpadBtn(10, 1);
+                            } else if (e.note.octave == "7") {
+                                console.log("Adjust Climb Left Pressed");
+                                launchpadBtn(14, 1);
+                            } else if (e.note.octave == "8") {
+                                console.log("Auto Climb Right Pressed");
+                                launchpadBtn(15, 1);
                             }
                             }
                         }
@@ -270,6 +278,12 @@
                                 } else if (e.note.octave == "6") {
                                     console.log("Spin Released");
                                     launchpadBtn(5, 0);
+                                } else if (e.note.octave == "7") {
+                                    console.log("Spin Adj CW Released");
+                                    launchpadBtn(11, 0);
+                                } else if (e.note.octave == "8") {
+                                    console.log("Spin Adj CCW Released");
+                                    launchpadBtn(12, 0);
                                 }
                             } else if (e.note.name == "D") {
                                 if (e.note.octave == "2") {
@@ -278,6 +292,21 @@
                                 } else if (e.note.octave == "3") {
                                     console.log("Climb 2 Released");
                                     launchpadBtn(7, 0);
+                                } else if (e.note.octave == "4") {
+                                    console.log("Spinner Up Released");
+                                    launchpadBtn(8, 0);
+                                } else if (e.note.octave == "5") {
+                                    console.log("Spinner Down Released");
+                                    launchpadBtn(9, 0);
+                                } else if (e.note.octave == "6") {
+                                    console.log("Auto Color Released");
+                                    launchpadBtn(10, 0);
+                                } else if (e.note.octave == "7") {
+                                    console.log("Adjust Climb Left Released");
+                                    launchpadBtn(14, 0);
+                                } else if (e.note.octave == "8") {
+                                    console.log("Auto Climb Right Released");
+                                    launchpadBtn(15, 0);
                                 }
                             }
                         }
