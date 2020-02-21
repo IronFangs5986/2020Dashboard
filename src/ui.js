@@ -77,7 +77,7 @@ let updateVision = (key, value) => {
 }
 };
 NetworkTables.addKeyListener('/FangsDashboard/vision', updateVision);
- 
+
 
 // Load list of prewritten autonomous modes
 NetworkTables.addKeyListener('/FangsDashboard/AutoList', (key, value) => {
@@ -159,6 +159,14 @@ function launchpadBtn(buttonId, value) {
     NetworkTables.putValue('/FangsLaunchpad/climbAdjustLeftButton', value);
   } else if (buttonId == 15) {
     NetworkTables.putValue('/FangsLaunchpad/climbAdjustRightButton', value);
+  } else if (buttonId == 16) {
+    if (value == 1) { //tracking
+      NetworkTables.putValue('/ChickenVision/Tape', true);
+      NetworkTables.putValue('/ChickenVision/Driver', false);
+    } else { //driver
+      NetworkTables.putValue('/ChickenVision/Tape', false);
+      NetworkTables.putValue('/ChickenVision/Driver', true);
+    }
   }
 }
 

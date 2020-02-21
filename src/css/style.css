@@ -89,7 +89,7 @@ header {
     overflow: hidden;
     background-color: white;
     border-radius: 15px;
-    /*background-image: url('http://10.59.86.2:1181/?action=stream');*/
+    background-image: url('http://frcvision.local:1181/stream.mjpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -129,7 +129,7 @@ text {
     width: 175px;
     height: 175px;
     margin-top: 15px;
-    
+
 }
 #gyro-arm {
     -webkit-transform-origin: bottom;
@@ -298,12 +298,12 @@ box-shadow: 0 4px 6px -6px #222;
 }
 .motor progress[value]::-webkit-progress-value {
     background-image:
-         -webkit-linear-gradient(top, 
-                                 rgba(255, 255, 255, .25), 
+         -webkit-linear-gradient(top,
+                                 rgba(255, 255, 255, .25),
                                  rgba(0, 0, 0, .25)),
          -webkit-linear-gradient(left, #09c, #f44);
-  
-      border-radius: 10px; 
+
+      border-radius: 10px;
       background-size: 35px 20px, 100% 100%, 100% 100%;
   }
   .progress {
