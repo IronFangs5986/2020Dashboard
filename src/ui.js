@@ -167,6 +167,30 @@ function launchpadBtn(buttonId, value) {
       NetworkTables.putValue('/ChickenVision/Tape', false);
       NetworkTables.putValue('/ChickenVision/Driver', true);
     }
+  } else if (buttonId == 17) {
+    NetworkTables.putValue('/FangsLaunchpad/autoShootButton', value);
+  } else if (buttonId == 18) {
+    NetworkTables.putValue('/FangsLaunchpad/semiAutoShootButton', value);
+  } else if (buttonId == 19) {
+    NetworkTables.putValue('/FangsLaunchpad/semiAutoRevButton', value);
+  } else if (buttonId == 20) {
+    NetworkTables.putValue('/FangsLaunchpad/intakeOutButton', value);
+  } else if (buttonId == 21) {
+    NetworkTables.putValue('/FangsLaunchpad/intakeInButton', value);
+  } else if (buttonId == 22) {
+    NetworkTables.putValue('/FangsLaunchpad/indexerOutButton', value);
+  } else if (buttonId == 23) {
+    NetworkTables.putValue('/FangsLaunchpad/indexerInButton', value);
+  } else if (buttonId == 24) {
+    NetworkTables.putValue('/FangsLaunchpad/transportOutButton', value);
+  } else if (buttonId == 25) {
+    NetworkTables.putValue('/FangsLaunchpad/transportInButton', value);
+  } else if (buttonId == 26) {
+    NetworkTables.putValue('/FangsLaunchpad/controlOutButton', value);
+  } else if (buttonId == 27) {
+    NetworkTables.putValue('/FangsLaunchpad/controlInButton', value);
+  } else if (buttonId == 28) {
+    NetworkTables.putValue('/FangsLaunchpad/manualShootButton', value);
   }
 }
 
