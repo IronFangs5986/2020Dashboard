@@ -14,7 +14,7 @@ let ui = {
     },
     battery: document.getElementById('battery'),
     shooterrpm: document.getElementById('shooterrpm'),
-    elevatorHeight: document.getElementById('elevatorHeight'),
+    target: document.getElementById('target'),
     vision: document.getElementById('vision'),
     leftDist: document.getElementById('leftDist'),
     rightDist: document.getElementById('rightDist'),
@@ -47,11 +47,15 @@ ui.battery.innerHTML = "<div class='sectitle'>Battery</div><center><div class='p
 };
 NetworkTables.addKeyListener('/FangsDashboard/battery', updateBattery);
 
-// Elevator Height
-let updateElevatorHeight = (key, value) => {
-ui.elevatorHeight.innerHTML = "<div class='sectitle'>Elevator</div><center><div class='paneltext'>"+value+"</div></center></div>"
+// Target
+let updateTarget = (key, value) => {
+  if (value == true) {
+    ui.target.innerHTML = "<div class='sectitle'>Target</div><center><div class='paneltext green'>READY</div></center></div>"
+  } else {
+    ui.target.innerHTML = "<div class='sectitle'>Target</div><center><div class='paneltext red'>NO</div></center></div>"
+  }
 };
-NetworkTables.addKeyListener('/FangsDashboard/elevatorHeight', updateElevatorHeight);
+NetworkTables.addKeyListener('/ChickenVision/tapeDetected', updateTarget);
 
 
   NetworkTables.addKeyListener('/FangsDashboard/time', (key, value) => {
@@ -191,6 +195,10 @@ function launchpadBtn(buttonId, value) {
     NetworkTables.putValue('/FangsLaunchpad/controlInButton', value);
   } else if (buttonId == 28) {
     NetworkTables.putValue('/FangsLaunchpad/manualShootButton', value);
+  } else if (buttonId == 29) {
+    NetworkTables.putValue('/FangsLaunchpad/robotSpinLeftButton', value);
+  } else if (buttonId == 30) {
+    NetworkTables.putValue('/FangsLaunchpad/robotSpinRightButton', value);
   }
 }
 

@@ -10,7 +10,7 @@
 
 <body>
     <div id="timer">2:15</div>
-    <div id="camera"></div>
+    <div id="camera">asd</div>
     <article>
         <div class="select-container">
             <div class='sectitle'>Autonomous</div>
@@ -51,28 +51,28 @@
                 </div>
             </div>
             <div class="panel">
-                <div class="panelcont" id="elevatorHeight">
-                    <div class='sectitle'>Elevator</div>
+                <div class="panelcont" id="target">
+                    <div class='sectitle'>Target</div>
                     <center>
-                        <div class='paneltext'>BOTTOM</div>
+                        <div class='paneltext red'>NO</div>
                     </center>
                 </div>
             </div>
         </div>
         <div class="panels">
             <div class="panel">
-                <div class="panelcont" id="vision">
-                    <div class='sectitle'>Vision</div>
+                <div class="panelcont" id="distance">
+                    <div class='sectitle'>Distance</div>
                     <center>
-                        <div class='paneltext'>N/A</div>
+                        <div class='paneltext'>0.00ft</div>
                     </center>
                 </div>
             </div>
             <div class="panel">
-                <div class="panelcont" id="leftDist">
-                    <div class='sectitle'>Left</div>
+                <div class="panelcont" id="count">
+                    <div class='sectitle'>PC's</div>
                     <center>
-                        <div class='paneltext'>0.00ft</div>
+                        <div class='paneltext'>0</div>
                     </center>
                 </div>
             </div>
@@ -210,7 +210,7 @@
                     input.addListener('noteon', 1,
                         function (e) {
                             document.getElementById("color").innerHTML = "Red" + e.note
-                                        .name + e.note.octave;
+                                .name + e.note.octave;
                             if (e.note.name == "C") {
                                 if (e.note.octave == "2") {
                                     console.log("Red Pressed");
@@ -235,58 +235,64 @@
                                     launchpadBtn(12, 1);
                                 }
                             } else if (e.note.name == "D") {
-                            if (e.note.octave == "2") {
-                                console.log("Climb 1 Pressed");
-                                launchpadBtn(6, 1);
-                            } else if (e.note.octave == "3") {
-                                console.log("Climb 2 Pressed");
-                                launchpadBtn(7, 1);
-                            } else if (e.note.octave == "4") {
-                                console.log("Spinner Up Pressed");
-                                launchpadBtn(8, 1);
-                            } else if (e.note.octave == "5") {
-                                console.log("Spinner Down Pressed");
-                                launchpadBtn(9, 1);
-                            } else if (e.note.octave == "6") {
-                                console.log("Auto Color Pressed");
-                                launchpadBtn(10, 1);
-                            } else if (e.note.octave == "7") {
-                                console.log("Adjust Climb Left Pressed");
-                                launchpadBtn(14, 1);
-                            } else if (e.note.octave == "8") {
-                                console.log("Auto Climb Right Pressed");
-                                launchpadBtn(15, 1);
-                            }
+                                if (e.note.octave == "2") {
+                                    console.log("Climb 1 Pressed");
+                                    launchpadBtn(6, 1);
+                                } else if (e.note.octave == "3") {
+                                    console.log("Climb 2 Pressed");
+                                    launchpadBtn(7, 1);
+                                } else if (e.note.octave == "4") {
+                                    console.log("Spinner Up Pressed");
+                                    launchpadBtn(8, 1);
+                                } else if (e.note.octave == "5") {
+                                    console.log("Spinner Down Pressed");
+                                    launchpadBtn(9, 1);
+                                } else if (e.note.octave == "6") {
+                                    console.log("Auto Color Pressed");
+                                    launchpadBtn(10, 1);
+                                } else if (e.note.octave == "7") {
+                                    console.log("Adjust Climb Left Pressed");
+                                    launchpadBtn(14, 1);
+                                } else if (e.note.octave == "8") {
+                                    console.log("Auto Climb Right Pressed");
+                                    launchpadBtn(15, 1);
+                                }
                             } else if (e.note.name == "E") {
-                              if (e.note.octave == "2") {
-                                launchpadBtn(16, 1);
-                              } else if (e.note.octave == "3") {
-                                launchpadBtn(17, 1);
-                              } else if (e.note.octave == "4") {
-                                launchpadBtn(18, 1);
-                              } else if (e.note.octave == "5") {
-                                launchpadBtn(19, 1);
-                              } else if (e.note.octave == "6") {
-                                launchpadBtn(20, 1);
-                              } else if (e.note.octave == "7") {
-                                launchpadBtn(21, 1);
-                              } else if (e.note.octave == "8") {
-                                launchpadBtn(22, 1);
-                              }
+                                if (e.note.octave == "2") {
+                                    launchpadBtn(16, 1);
+                                } else if (e.note.octave == "3") {
+                                    launchpadBtn(17, 1);
+                                } else if (e.note.octave == "4") {
+                                    launchpadBtn(18, 1);
+                                } else if (e.note.octave == "5") {
+                                    launchpadBtn(19, 1);
+                                } else if (e.note.octave == "6") {
+                                    launchpadBtn(20, 1);
+                                } else if (e.note.octave == "7") {
+                                    launchpadBtn(21, 1);
+                                } else if (e.note.octave == "8") {
+                                    launchpadBtn(22, 1);
+                                }
                             } else if (e.note.name == "F") {
-                              if (e.note.octave == "2") {
-                                launchpadBtn(23, 1);
-                              } else if (e.note.octave == "3") {
-                                launchpadBtn(24, 1);
-                              } else if (e.note.octave == "4") {
-                                launchpadBtn(25, 1);
-                              } else if (e.note.octave == "5") {
-                                launchpadBtn(26, 1);
-                              } else if (e.note.octave == "6") {
-                                launchpadBtn(27, 1);
-                              } else if (e.note.octave == "7") {
-                                launchpadBtn(28, 1);
-                              }
+                                if (e.note.octave == "2") {
+                                    launchpadBtn(23, 1);
+                                } else if (e.note.octave == "3") {
+                                    launchpadBtn(24, 1);
+                                } else if (e.note.octave == "4") {
+                                    launchpadBtn(25, 1);
+                                } else if (e.note.octave == "5") {
+                                    launchpadBtn(26, 1);
+                                } else if (e.note.octave == "6") {
+                                    launchpadBtn(27, 1);
+                                } else if (e.note.octave == "7") {
+                                    launchpadBtn(28, 1);
+                                }
+                            } else if (e.note.name == "G") {
+                                if (e.note.octave == "2") {
+                                    launchpadBtn(29, 1);
+                                } else if (e.note.octave == "3") {
+                                    launchpadBtn(30, 1);
+                                }
                             }
                         }
                     );
@@ -339,47 +345,53 @@
                                     launchpadBtn(15, 0);
                                 }
                             } else if (e.note.name == "E") {
-                              if (e.note.octave == "2") {
-                                launchpadBtn(16, 0);
-                              } else if (e.note.octave == "3") {
-                                launchpadBtn(17, 0);
-                              } else if (e.note.octave == "4") {
-                                launchpadBtn(18, 0);
-                              } else if (e.note.octave == "5") {
-                                launchpadBtn(19, 0);
-                              } else if (e.note.octave == "6") {
-                                launchpadBtn(20, 0);
-                              } else if (e.note.octave == "7") {
-                                launchpadBtn(21, 0);
-                              } else if (e.note.octave == "8") {
-                                launchpadBtn(22, 0);
-                              }
+                                if (e.note.octave == "2") {
+                                    launchpadBtn(16, 0);
+                                } else if (e.note.octave == "3") {
+                                    launchpadBtn(17, 0);
+                                } else if (e.note.octave == "4") {
+                                    launchpadBtn(18, 0);
+                                } else if (e.note.octave == "5") {
+                                    launchpadBtn(19, 0);
+                                } else if (e.note.octave == "6") {
+                                    launchpadBtn(20, 0);
+                                } else if (e.note.octave == "7") {
+                                    launchpadBtn(21, 0);
+                                } else if (e.note.octave == "8") {
+                                    launchpadBtn(22, 0);
+                                }
                             } else if (e.note.name == "F") {
-                              if (e.note.octave == "2") {
-                                launchpadBtn(23, 0);
-                              } else if (e.note.octave == "3") {
-                                launchpadBtn(24, 0);
-                              } else if (e.note.octave == "4") {
-                                launchpadBtn(25, 0);
-                              } else if (e.note.octave == "5") {
-                                launchpadBtn(26, 0);
-                              } else if (e.note.octave == "6") {
-                                launchpadBtn(27, 0);
-                              } else if (e.note.octave == "7") {
-                                launchpadBtn(28, 0);
-                              }
+                                if (e.note.octave == "2") {
+                                    launchpadBtn(23, 0);
+                                } else if (e.note.octave == "3") {
+                                    launchpadBtn(24, 0);
+                                } else if (e.note.octave == "4") {
+                                    launchpadBtn(25, 0);
+                                } else if (e.note.octave == "5") {
+                                    launchpadBtn(26, 0);
+                                } else if (e.note.octave == "6") {
+                                    launchpadBtn(27, 0);
+                                } else if (e.note.octave == "7") {
+                                    launchpadBtn(28, 0);
+                                }
+                            } else if (e.note.name == "G") {
+                                if (e.note.octave == "2") {
+                                    launchpadBtn(29, 0);
+                                } else if (e.note.octave == "3") {
+                                    launchpadBtn(30, 0);
+                                }
                             }
                         }
                     );
 
                     //set launchpad
 
-                   //vars
+                    //vars
 
-                   //displayAnimation
+                    //displayAnimation
 
-                   //interval
-                   setupAnimations(WebMidi);
+                    //interval
+                    setupAnimations(WebMidi);
 
                 }, 2000);
                 console.log("asd");
