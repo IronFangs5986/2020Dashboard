@@ -199,6 +199,8 @@ function launchpadBtn(buttonId, value) {
     NetworkTables.putValue('/FangsLaunchpad/robotSpinLeftButton', value);
   } else if (buttonId == 30) {
     NetworkTables.putValue('/FangsLaunchpad/robotSpinRightButton', value);
+  } else if (buttonId == 31) {
+    NetworkTables.putValue('/FangsLaunchpad/autoIntakeButton', value);
   }
 }
 
