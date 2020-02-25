@@ -436,3 +436,21 @@ font-size: 20px;
   padding-top: 5px;
   margin-top: 0px;
   }
+
+  .dot {
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    display: inline-block;
+    line-height: 60px;
+    font-size: 20px;
+    color: black;
+    -webkit-box-shadow: 0 4px 6px -6px #222;
+  -moz-box-shadow: 0 4px 6px -6px #222;
+  box-shadow: 0 4px 6px -6px #222;
+  }
+  .hasBall {
+      background-color: yellow !important;
+  }

@@ -257,6 +257,46 @@ NetworkTables.addKeyListener('/SmartDashboard/switchFour', (key, value) => {
   }
 });
 
+NetworkTables.addKeyListener('/FangsDashboard/firstBall', (key, value) => {
+  if (value == true) {
+    document.getElementById("firstBall").innerHTML = "<span class='dot hasBall'>1</span>";
+  } else {
+    document.getElementById("firstBall").innerHTML = "<span class='dot'>1</span>";
+  }
+});
+
+NetworkTables.addKeyListener('/FangsDashboard/secondBall', (key, value) => {
+  if (value == true) {
+    document.getElementById("secondBall").innerHTML = "<span class='dot hasBall'>2</span>";
+  } else {
+    document.getElementById("secondBall").innerHTML = "<span class='dot'>2</span>";
+  }
+});
+
+NetworkTables.addKeyListener('/FangsDashboard/thirdBall', (key, value) => {
+  if (value == true) {
+    document.getElementById("thirdBall").innerHTML = "<span class='dot hasBall'>3</span>";
+  } else {
+    document.getElementById("thirdBall").innerHTML = "<span class='dot'>3</span>";
+  }
+});
+
+NetworkTables.addKeyListener('/FangsDashboard/fourthBall', (key, value) => {
+  if (value == true) {
+    document.getElementById("fourthBall").innerHTML = "<span class='dot hasBall'>4</span>";
+  } else {
+    document.getElementById("fourthBall").innerHTML = "<span class='dot'>4</span>";
+  }
+});
+
+NetworkTables.addKeyListener('/FangsDashboard/fifthBall', (key, value) => {
+  if (value == true) {
+    document.getElementById("fifthBall").innerHTML = "<span class='dot hasBall'>5</span>";
+  } else {
+    document.getElementById("fifthBall").innerHTML = "<span class='dot'>5</span>";
+  }
+});
+
 addEventListener('error',(ev)=>{
     ipc.send('windowError',{mesg:ev.message,file:ev.filename,lineNumber:ev.lineno})
 });
