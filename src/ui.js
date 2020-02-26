@@ -14,9 +14,10 @@ let ui = {
     },
     battery: document.getElementById('battery'),
     shooterrpm: document.getElementById('shooterrpm'),
+    revSpeed : document.getElementById('revSpeed'),
     target: document.getElementById('target'),
-    vision: document.getElementById('vision'),
-    leftDist: document.getElementById('leftDist'),
+    distance: document.getElementById('distance'),
+    calcrpm: document.getElementById('calcrpm'),
     rightDist: document.getElementById('rightDist'),
     autoSelect: document.getElementById('auto-select')
 };
@@ -64,23 +65,31 @@ NetworkTables.addKeyListener('/ChickenVision/tapeDetected', updateTarget);
 
 // shooterRPM
 let updateShooterRPM = (key, value) => {
-  ui.shooterrpm.innerHTML = "<div class='sectitle'>Shooter</div><center><div class='paneltext'>"+Math.trunc(value)+" rpm</div></center></div>"
+    if (Math.abs(NetworkTables.getValue('/FangsDashboard/calcRPM') - value) <= 20) {
+      ui.shooterrpm.innerHTML = "<div class='sectitle'>Shooter</div><center><div class='paneltext green'>"+Math.trunc(value)+" rpm</div></center></div>"
+    } else {
+      ui.shooterrpm.innerHTML = "<div class='sectitle'>Shooter</div><center><div class='paneltext red'>"+Math.trunc(value)+" rpm</div></center></div>"
+    }
   };
   NetworkTables.addKeyListener('/FangsDashboard/shooterRPM', updateShooterRPM);
 
-  // Vision
-let updateVision = (key, value) => {
-  if (value == -99999.0) {
-    ui.vision.innerHTML = "<div class='sectitle'>Vision</div><center><div class='paneltext'>N/A</div></center></div>"
-  } else if (value <= -.2) {
-    ui.vision.innerHTML = "<div class='sectitle'>Vision</div><center><div class='paneltext red'>"+Math.round(value*100)/100+"<br><-----</div></center></div>"
-  } else if (value >= .2) {
-    ui.vision.innerHTML = "<div class='sectitle'>Vision</div><center><div class='paneltext red'>"+Math.round(value*100)/100+"<br>-----></div></center></div>"
-} else {
-  ui.vision.innerHTML = "<div class='sectitle'>Vision</div><center><div class='paneltext green'>"+Math.round(value*100)/100+"<br>Centered</div></center></div>"
-}
+// Rev Speed
+let updateShooterPercent = (key, value) => {
+  ui.revSpeed.innerHTML = "<div class='sectitle'>Rev</div><center><div class='paneltext'>"+value*100+"%</div></center></div>"
+  };
+  NetworkTables.addKeyListener('/FangsDashboard/revSpeed', updateShooterPercent);
+
+  // Distance
+let updateDistance = (key, value) => {
+  ui.distance.innerHTML = "<div class='sectitle'>Distance</div><center><div class='paneltext'>"+Math.round(value)+"in</div></center></div>"
 };
-NetworkTables.addKeyListener('/FangsDashboard/vision', updateVision);
+NetworkTables.addKeyListener('/ChickenVision/distance', updateVision);
+
+// Calc RPM
+let updateCalcRPM = (key, value) => {
+  ui.calcrpm.innerHTML = "<div class='sectitle'>Shoot</div><center><div class='paneltext'>"+Math.trunc(value)+" rpm</div></center></div>"
+};
+NetworkTables.addKeyListener('/FangsDashboard/calcRPM', updateCalcRPM);
 
 
 // Load list of prewritten autonomous modes
@@ -243,9 +252,11 @@ function launchpadBtn(buttonId, value) {
   } else if (buttonId == 31) {
     NetworkTables.putValue('/FangsLaunchpad/autoIntakeButton', value);
   } else if (buttonId == 32) {
-   NetworkTables.putValue('/FangsLaunchpad/revDownButton', value);
+   //NetworkTables.putValue('/FangsLaunchpad/revDownButton', value);
+   NetworkTables.putValue('/FangsLaunchpad/revSpeed', NetworkTables.getValue('/FangsLaunchpad/revSpeed') - 0.5);
   } else if (buttonId == 33) {
-   NetworkTables.putValue('/FangsLaunchpad/revUpButton', value);
+   //NetworkTables.putValue('/FangsLaunchpad/revUpButton', value);
+   NetworkTables.putValue('/FangsLaunchpad/revSpeed', NetworkTables.getValue('/FangsLaunchpad/revSpeed') + 0.5);
   }
 }
 
