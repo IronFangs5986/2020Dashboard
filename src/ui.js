@@ -112,6 +112,47 @@ ui.autoSelect.onchange = function() {
     NetworkTables.putValue('/FangsDashboard/autoSelected', this.value);
 };
 
+NetworkTables.addKeyListener('/FangsDashboard/firstBall', (key, value) => {
+  if (value == true) {
+    document.getElementById("firstBall").innerHTML = "<span class='dot hasBall'>1</span>";
+  } else {
+    document.getElementById("firstBall").innerHTML = "<span class='dot'>1</span>";
+  }
+});
+
+NetworkTables.addKeyListener('/FangsDashboard/secondBall', (key, value) => {
+  if (value == true) {
+    document.getElementById("secondBall").innerHTML = "<span class='dot hasBall'>2</span>";
+  } else {
+    document.getElementById("secondBall").innerHTML = "<span class='dot'>2</span>";
+  }
+});
+
+NetworkTables.addKeyListener('/FangsDashboard/thirdBall', (key, value) => {
+  if (value == true) {
+    document.getElementById("thirdBall").innerHTML = "<span class='dot hasBall'>3</span>";
+  } else {
+    document.getElementById("thirdBall").innerHTML = "<span class='dot'>3</span>";
+  }
+});
+
+NetworkTables.addKeyListener('/FangsDashboard/fourthBall', (key, value) => {
+  if (value == true) {
+    document.getElementById("fourthBall").innerHTML = "<span class='dot hasBall'>4</span>";
+  } else {
+    document.getElementById("fourthBall").innerHTML = "<span class='dot'>4</span>";
+  }
+});
+
+NetworkTables.addKeyListener('/FangsDashboard/fifthBall', (key, value) => {
+  if (value == true) {
+    document.getElementById("fifthBall").innerHTML = "<span class='dot hasBall'>5</span>";
+    console.log("fifth on");
+  } else {
+    document.getElementById("fifthBall").innerHTML = "<span class='dot'>5</span>";
+  }
+});
+
 // Reset gyro value to 0 on click
 ui.gyro.container.onclick = function() {
     // Store previous gyro val, will now be subtracted from val for callibration
@@ -201,6 +242,10 @@ function launchpadBtn(buttonId, value) {
     NetworkTables.putValue('/FangsLaunchpad/robotSpinRightButton', value);
   } else if (buttonId == 31) {
     NetworkTables.putValue('/FangsLaunchpad/autoIntakeButton', value);
+  } else if (buttonId == 32) {
+   NetworkTables.putValue('/FangsLaunchpad/revDownButton', value);
+  } else if (buttonId == 33) {
+   NetworkTables.putValue('/FangsLaunchpad/revUpButton', value);
   }
 }
 
@@ -254,46 +299,6 @@ NetworkTables.addKeyListener('/SmartDashboard/switchFour', (key, value) => {
   } else {
     document.getElementById("labelFour").innerHTML = "OFF";
     document.getElementById("switchFour").checked = false;
-  }
-});
-
-NetworkTables.addKeyListener('/FangsDashboard/firstBall', (key, value) => {
-  if (value == true) {
-    document.getElementById("firstBall").innerHTML = "<span class='dot hasBall'>1</span>";
-  } else {
-    document.getElementById("firstBall").innerHTML = "<span class='dot'>1</span>";
-  }
-});
-
-NetworkTables.addKeyListener('/FangsDashboard/secondBall', (key, value) => {
-  if (value == true) {
-    document.getElementById("secondBall").innerHTML = "<span class='dot hasBall'>2</span>";
-  } else {
-    document.getElementById("secondBall").innerHTML = "<span class='dot'>2</span>";
-  }
-});
-
-NetworkTables.addKeyListener('/FangsDashboard/thirdBall', (key, value) => {
-  if (value == true) {
-    document.getElementById("thirdBall").innerHTML = "<span class='dot hasBall'>3</span>";
-  } else {
-    document.getElementById("thirdBall").innerHTML = "<span class='dot'>3</span>";
-  }
-});
-
-NetworkTables.addKeyListener('/FangsDashboard/fourthBall', (key, value) => {
-  if (value == true) {
-    document.getElementById("fourthBall").innerHTML = "<span class='dot hasBall'>4</span>";
-  } else {
-    document.getElementById("fourthBall").innerHTML = "<span class='dot'>4</span>";
-  }
-});
-
-NetworkTables.addKeyListener('/FangsDashboard/fifthBall', (key, value) => {
-  if (value == true) {
-    document.getElementById("fifthBall").innerHTML = "<span class='dot hasBall'>5</span>";
-  } else {
-    document.getElementById("fifthBall").innerHTML = "<span class='dot'>5</span>";
   }
 });
 
