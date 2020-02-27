@@ -75,7 +75,7 @@ let updateShooterRPM = (key, value) => {
 
 // Rev Speed
 let updateShooterPercent = (key, value) => {
-  ui.revSpeed.innerHTML = "<div class='sectitle'>Rev</div><center><div class='paneltext'>"+value*100+"%</div></center></div>"
+  ui.revSpeed.innerHTML = "<div class='sectitle'>Rev</div><center><div class='paneltext'>"+Math.round(value*100)+"%</div></center></div>"
   };
   NetworkTables.addKeyListener('/FangsDashboard/revSpeed', updateShooterPercent);
 
@@ -83,7 +83,7 @@ let updateShooterPercent = (key, value) => {
 let updateDistance = (key, value) => {
   ui.distance.innerHTML = "<div class='sectitle'>Distance</div><center><div class='paneltext'>"+Math.round(value)+"in</div></center></div>"
 };
-NetworkTables.addKeyListener('/ChickenVision/distance', updateVision);
+NetworkTables.addKeyListener('/ChickenVision/distance', updateDistance);
 
 // Calc RPM
 let updateCalcRPM = (key, value) => {
@@ -252,11 +252,17 @@ function launchpadBtn(buttonId, value) {
   } else if (buttonId == 31) {
     NetworkTables.putValue('/FangsLaunchpad/autoIntakeButton', value);
   } else if (buttonId == 32) {
-   //NetworkTables.putValue('/FangsLaunchpad/revDownButton', value);
-   NetworkTables.putValue('/FangsLaunchpad/revSpeed', NetworkTables.getValue('/FangsLaunchpad/revSpeed') - 0.5);
+  if (value == 1) {
+   NetworkTables.putValue('/FangsLaunchpad/revDownButton', value);
+   let revValue = NetworkTables.getValue('/FangsDashboard/revSpeed');
+   NetworkTables.putValue('/FangsDashboard/revSpeed', revValue - 0.01);
+ }
   } else if (buttonId == 33) {
-   //NetworkTables.putValue('/FangsLaunchpad/revUpButton', value);
-   NetworkTables.putValue('/FangsLaunchpad/revSpeed', NetworkTables.getValue('/FangsLaunchpad/revSpeed') + 0.5);
+    if (value == 1) {
+   NetworkTables.putValue('/FangsLaunchpad/revUpButton', value);
+   let revValue = NetworkTables.getValue('/FangsDashboard/revSpeed');
+   NetworkTables.putValue('/FangsDashboard/revSpeed', revValue + 0.01);
+  }
   }
 }
 
