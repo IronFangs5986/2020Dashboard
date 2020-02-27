@@ -118,7 +118,32 @@ header {
     background-repeat: no-repeat;
     margin-top: 20px;
     margin-bottom: 20px;
+    display: inline-block;
 }
+
+#valuesw {
+    display: inline-block;
+    background-color: white;
+    width: 45%;
+}
+
+#valuees {
+    padding: 0;
+    bottom: 2vh;
+    left: 1vw;
+    width: 40%;
+    height: 37vh;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 15px;
+    /*background-image: url('http://10.59.86.2:1180/stream.mjpg');*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
 article {
     top: 5px;
     left: 50vw;

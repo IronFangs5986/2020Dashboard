@@ -178,11 +178,41 @@ ui.gyro.container.onclick = function() {
         ui.safeLabel.innerHTML = "Off";
     }
 }*/
-// Update NetworkTables when autonomous selector is changed
-// Get value of arm height slider when it's adjusted
-ui.armPosition.oninput = function() {
-    NetworkTables.putValue('/SmartDashboard/arm/encoder', parseInt(this.value));
-};
+
+function zeroLaunchpad() {
+  let value = 0;
+  NetworkTables.putValue('/FangsLaunchpad/redButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/greenButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/blueButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/yellowButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/spinButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/climbButton1', value);
+  NetworkTables.putValue('/FangsLaunchpad/climbButton2', value);
+  NetworkTables.putValue('/FangsLaunchpad/spinnerUpButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/spinnerDownButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/autoColorButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/adjustCWButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/adjustCCWButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/climbAdjustLeftButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/climbAdjustRightButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/autoShootButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/semiAutoShootButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/semiAutoRevButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/intakeOutButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/intakeInButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/indexerOutButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/indexerInButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/transportOutButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/transportInButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/controlOutButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/controlInButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/manualShootButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/robotSpinLeftButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/robotSpinRightButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/autoIntakeButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/revDownButton', value);
+  NetworkTables.putValue('/FangsLaunchpad/revUpButton', value);
+}
 
 function launchpadBtn(buttonId, value) {
   if (buttonId == 1) {
