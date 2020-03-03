@@ -91,7 +91,7 @@ setLaunchpad(" ", " ", " ", " ", " ", " ", " ", " ", "A#");
 */
 
 function teamNumber() {
-            
+
     if (currentFrame == 0) {
         setLaunchpad(" ", " ", " ", " ", " ", " ", " ", "O", "A");
         setLaunchpad(" ", " ", " ", " ", " ", " ", " ", "O", "B");

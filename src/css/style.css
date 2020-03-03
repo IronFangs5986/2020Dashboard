@@ -89,7 +89,7 @@ header {
     overflow: hidden;
     background-color: white;
     border-radius: 15px;
-    background-image: url('http://frcvision.local:1181/stream.mjpg');
+    background-image: url('http://10.59.86.2:1181/?action=stream');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -113,13 +113,14 @@ header {
     overflow: hidden;
     background-color: white;
     border-radius: 15px;
-    /*background-image: url('http://10.59.86.2:1180/stream.mjpg');*/
+    background-image: url('http://frcvision.local:1181/stream.mjpg');
     background-size: cover;
     background-repeat: no-repeat;
     margin-top: 20px;
     margin-bottom: 20px;
     display: inline-block;
 }
+
 
 #valuesw {
     display: inline-block;

@@ -83,7 +83,7 @@ let updateShooterPercent = (key, value) => {
 let updateDistance = (key, value) => {
   ui.distance.innerHTML = "<div class='sectitle'>Distance</div><center><div class='paneltext'>"+Math.round(value)+"in</div></center></div>"
 };
-NetworkTables.addKeyListener('/ChickenVision/distance', updateDistance);
+NetworkTables.addKeyListener('/FangsDashboard/targetDistance', updateDistance);
 
 // Calc RPM
 let updateCalcRPM = (key, value) => {
