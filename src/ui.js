@@ -293,6 +293,8 @@ function launchpadBtn(buttonId, value) {
    let revValue = NetworkTables.getValue('/FangsDashboard/revSpeed');
    NetworkTables.putValue('/FangsDashboard/revSpeed', revValue + 0.01);
   }
+  } else if (buttonId == 34) {
+    NetworkTables.putValue('/FangsLaunchpad/policeLights', value);
   }
 }
 
