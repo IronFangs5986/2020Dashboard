@@ -89,11 +89,11 @@ header {
     overflow: hidden;
     background-color: white;
     border-radius: 15px;
-    background-image: url('http://10.59.86.2:1181/?action=stream');
+    background-image: url('http://limelight.local:5800');
     background-size: cover;
     background-repeat: no-repeat;
 }
-#camera:after {
+/*#camera:after {
     content:"";
     position: absolute;
     z-index: -1;
@@ -102,7 +102,7 @@ header {
     left: 50%;
     border-left: 2px solid #ff0000;
     transform: translate(-50%);
-}
+}*/
 
 #camera2 {
     padding: 0;
@@ -113,7 +113,7 @@ header {
     overflow: hidden;
     background-color: white;
     border-radius: 15px;
-    background-image: url('http://frcvision.local:1181/stream.mjpg');
+  background-image: url('http://10.59.86.2:1181/?action=stream');
     background-size: cover;
     background-repeat: no-repeat;
     margin-top: 20px;
