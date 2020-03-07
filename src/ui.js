@@ -295,6 +295,8 @@ function launchpadBtn(buttonId, value) {
   }
   } else if (buttonId == 34) {
     NetworkTables.putValue('/FangsLaunchpad/policeLights', value);
+  } else if (buttonId == 35) {
+    NetworkTables.putValue('/FangsLaunchpad/autoAlign', value);
   }
 }
 
