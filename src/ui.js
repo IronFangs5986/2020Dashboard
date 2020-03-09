@@ -245,11 +245,9 @@ function launchpadBtn(buttonId, value) {
     NetworkTables.putValue('/FangsLaunchpad/climbAdjustRightButton', value);
   } else if (buttonId == 16) {
     if (value == 1) { //tracking
-      NetworkTables.putValue('/ChickenVision/Tape', true);
-      NetworkTables.putValue('/ChickenVision/Driver', false);
+      NetworkTables.putValue('/limelight/camMode', 0.0);
     } else { //driver
-      NetworkTables.putValue('/ChickenVision/Tape', false);
-      NetworkTables.putValue('/ChickenVision/Driver', true);
+      NetworkTables.putValue('/limelight/camMode', 1.0);
     }
   } else if (buttonId == 17) {
     NetworkTables.putValue('/FangsLaunchpad/autoShootButton', value);
