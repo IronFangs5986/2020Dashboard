@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "jazz-midi-electron": "^1.1.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "webmidi": "^2.5.1",
     "wpilib-nt-client": "^1.7.1"
   }
