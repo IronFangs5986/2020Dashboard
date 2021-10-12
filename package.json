@@ -12,7 +12,7 @@
   "author": "Francisco Fabregat",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.7.12",
+    "electron": "^11.5.0",
     "electron-builder": "^20.28.4",
     "electron-packager": "^10.1.1"
   },
